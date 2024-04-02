@@ -1,0 +1,8 @@
+Flask
+PyPDF2
+langchain
+spacy
+langchain-google-genai
+google
+python-dotenv
+flask-cors
