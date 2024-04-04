@@ -87,6 +87,13 @@ def upload_pdftext():
     names = extract_names(text)
     return jsonify({"message": "Text uploaded successfully", "names": names})
 
+
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({"response": "Working"})
+
+
+
 @app.route('/chat', methods=['POST'])
 def chat():
     user_question = request.json['question']
@@ -101,4 +108,4 @@ def chat():
     return jsonify({"response": response["output_text"], "Sender" : "Bot", "Charname": charname})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)
