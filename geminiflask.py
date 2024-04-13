@@ -9,6 +9,7 @@ import google.generativeai as genai
 from langchain.vectorstores import FAISS
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains.question_answering import load_qa_chain
+from waitress import serve
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 from flask_cors import CORS
@@ -38,15 +39,14 @@ def get_vector_store(text_chunks):
 
 def get_conversational_chain():
     prompt_template = """
-    Answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
-    provided context just say, "answer is not available in the context", don't provide the wrong answer\n\n
+    In response to the provided context and question, Provide a succinct and accurate answer. Keep it concise yet informative. If the information is not available in the context, simply state "Not available in context". Avoid unnecessary elaboration and provide a precise response.\n\n    
     Context:\n {context}?\n
     Question: \n{question}\n
 
     Answer:
     """
 
-    model = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.05)
+    model = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.1)
 
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
@@ -98,7 +98,7 @@ def home():
 def chat():
     user_question = request.json['question']
     charname = request.json['charname']
-    print(user_question)
+    # print(user_question)
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     new_db = FAISS.load_local("faiss_index", embeddings)
     docs = new_db.similarity_search(user_question)
@@ -109,3 +109,5 @@ def chat():
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
+    # serve(app, host="0.0.0.0", port=8080)
+

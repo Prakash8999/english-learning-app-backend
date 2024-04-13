@@ -6,3 +6,4 @@ langchain-google-genai
 google
 python-dotenv
 flask-cors
+waitress
