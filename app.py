@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
@@ -20,12 +19,6 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 app = Flask(__name__)
 CORS(app, origins="*")
 
-def get_text_from_pdf(pdf):
-    pdf_reader = PdfReader(pdf)
-    text = ""
-    for page in pdf_reader.pages:
-        text += page.extract_text()
-    return text
 
 def get_text_chunks(text):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=1000)
