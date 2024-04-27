@@ -2,11 +2,11 @@
 Flask
 PyPDF2
 langchain
-spacy==3.0.6
 langchain-google-genai
 google
 python-dotenv
 flask-cors
 waitress
 faiss-cpu
-en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz
+spacy==3.0.6
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz
