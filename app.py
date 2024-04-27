@@ -108,6 +108,6 @@ def chat():
     return jsonify({"response": response["output_text"], "Sender" : "Bot", "Charname": charname})
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False)
+    app.run(debug=True, use_reloader=False, host='0.0.0.0', port=8080)
     # serve(app, host="0.0.0.0", port=8080)
 
