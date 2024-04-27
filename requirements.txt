@@ -2,7 +2,7 @@
 Flask
 PyPDF2
 langchain
-spacy
+spacy==3.0.6
 langchain-google-genai
 google
 python-dotenv
