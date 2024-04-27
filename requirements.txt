@@ -7,3 +7,4 @@ google
 python-dotenv
 flask-cors
 waitress
+faiss-gpu
