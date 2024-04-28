@@ -12,7 +12,7 @@ def download_spacy_model():
         nlp = spacy.load("en_core_web_sm")
     except OSError:
         # If not installed, download it
-        subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+        subprocess.run(["python", "-m", "spacy", "download", "en"])
 
 # Call the download_spacy_model function during initialization
 download_spacy_model()
