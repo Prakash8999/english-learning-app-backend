@@ -4,6 +4,18 @@ import os
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 import spacy
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+import subprocess
+
+def download_spacy_model():
+    try:
+        # Check if model is already installed
+        nlp = spacy.load("en_core_web_sm")
+    except OSError:
+        # If not installed, download it
+        subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+
+# Call the download_spacy_model function during initialization
+download_spacy_model()
 import google.generativeai as genai
 from langchain.vectorstores import FAISS
 from langchain_google_genai import ChatGoogleGenerativeAI
